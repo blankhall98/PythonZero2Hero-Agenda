@@ -15,6 +15,7 @@ class Directorio:
     def __init__(self,inputs):
         self.inputs = inputs
         self.datos = pd.read_csv(self.inputs['ruta_contactos'])
+        self.menu()
 
     #CRUD = Create Read Update Delete
     def create_contact(self):
@@ -44,8 +45,22 @@ class Directorio:
     def delete_contact(self,contact):
         pass
 
+    def menu(self):
+
+        repeat = True
+        while repeat:
+            action = input('\n'+'¿Que desdeas hacer? 1 = crear contacto / 2 = ver contactos: ')
+            if action == '1':
+                self.create_contact()
+            elif action == '2':
+                self.read_contacts()
+
+            repeat = input('¿Desea realizar otra accion? (s/n): ')
+            if repeat == 's':
+                repeat = True
+            elif repeat == 'n':
+                repeat = False
+        print('\n'+'Hasta Luego!')
+
 #aplicación
 dir = Directorio(inputs)
-dir.read_contacts()
-dir.create_contact()
-dir.read_contacts()
